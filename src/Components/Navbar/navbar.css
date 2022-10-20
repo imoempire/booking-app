@@ -1,0 +1,26 @@
+.nav__list {
+   position: fixed;
+   left: 0;
+   top: 0;
+   width: 100%;
+   padding: 1rem 4rem 0 4rem;
+   min-height: 64px;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-between;
+   transition: .3s;
+}
+
+.nav__user {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
+   gap: 1rem;
+}
+
+.nav__user .avatar img {
+   width: 2rem;
+   height: 2rem;
+}
