@@ -1,9 +1,11 @@
+nav {
+   background-color: #FFFFFF;
+}
+
 .nav__list {
-   position: fixed;
-   left: 0;
-   top: 0;
    width: 100%;
-   padding: 1rem 4rem 0 4rem;
+   padding-left: 15rem;
+   padding-right: 20rem;
    min-height: 64px;
    display: flex;
    flex-direction: row;
@@ -23,4 +25,31 @@
 .nav__user .avatar img {
    width: 2rem;
    height: 2rem;
+}
+
+@media screen and (max-width: 1024px) {
+   .nav__list {
+      width: 100%;
+      padding-left: 5rem;
+      padding-right: 5rem;
+   }
+ }
+
+ @media screen and (max-width: 450px) {
+   .nav__list {
+      width: 100%;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+   }
+   .nav__logo img{
+      width: 6rem;
+      height: 1.5rem;
+   }
+   .nav__user {
+      gap: .5rem;
+   }
+   .nav__user .avatar img {
+      width: 1.5rem;
+      height: 1.5rem;
+   }
 }

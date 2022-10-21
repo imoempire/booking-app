@@ -1,10 +1,18 @@
-:right {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;700&display=swap');
+
+:root {
    /* Colors */
-   --dashboard-color:#F9FAFB;
+   --dashboard-color: #F9FAFB;
 }
 
 * {
    margin: 0;
    padding: 0;
    box-sizing: border-box;
+}
+
+body {
+   font-family: 'Roboto', sans-serif;
+   background: var(--dashboard-color);
 }
