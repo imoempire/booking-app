@@ -1,50 +1,60 @@
-import React, { useState } from "react";
-import { addSeats, bookTable } from "../../Api/methods";
+import React, { useEffect, useState } from "react";
+import { addSeats, bookTable, getItem, updatePost } from "../../Api/methods";
+import { useStore } from "../../Context/store";
 import { bookings } from "../../Utils/Data";
 import Add from "./AddTable/Add";
 import List from "./List/List";
 import "./manage.css";
 
 const TablesChairs = () => {
-  const [tables, setTables] = useState(bookings);
-  const [ItemInfo, setItemInfo] = useState(null);
+  const [Tables, setTables] = useState(bookings);
+  const [ItemInfo, setItemInfo] = useState("");
+  const { totalTable, TotalChair, setTotalTable, setTotalChair } = useStore();
+
+  const itemId = process.env.Id;
+
+  const fetchSeats = async () => {
+    const { error, seats } = await getItem(itemId);
+
+    if (error) {
+      alert(error);
+    }
+
+    setItemInfo({ ...seats });
+    setTotalTable(seats);
+  };
+
+  useEffect(() => {
+    fetchSeats();
+  }, []);
+
+  const upDate = async (data) => {
+    const { error, seats, success } = await updatePost(ItemInfo.id, data);
+
+    if (error) {
+      alert(error);
+    }
+
+    if (success) {
+      alert("Tables updated");
+    }
+
+    setItemInfo({ ...seats });
+  };
 
   const handleSubmit = async (data) => {
-
-    const { error, success,  } = await addSeats(data);
+    const { error, success } = await addSeats(data);
 
     if (error) return alert(error);
 
     if (success) {
-      alert("Booking at blah successfully");
+      alert("Booking successfully");
     }
-    // console.log(data);
   };
 
   return (
     <div className="Form">
-      <div className="Total">
-        <span>Total Tables: 20</span>
-        <span>Total Chairs: 80</span>
-      </div>
-      <Add initialItems={ItemInfo} onSubmit={handleSubmit} />
-      <div className="Table_chairs">
-        <div className="Bar">
-          <div className="Availablity">
-            <div className="green"></div>
-            Available
-          </div>
-          <span className="Availablity">
-            <div className="red"></div>
-            Booked
-          </span>
-        </div>
-        <div className="tableList">
-          {tables.map((item) => (
-            <List item={item} key={item.id} />
-          ))}
-        </div>
-      </div>
+      <Add initialItems={ItemInfo} onSubmit={upDate} />
     </div>
   );
 };

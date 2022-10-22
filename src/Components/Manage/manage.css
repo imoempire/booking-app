@@ -31,7 +31,7 @@ form span {
    box-shadow: var(--shadow);
    background-color: var(--content-color);
    color: black;
-   border: 1px solid #E5E7EB;
+   border: 1px solid rgb(177, 177, 177);
    outline: none;
    border-radius: 1rem;
    padding: 0.625rem 1.875rem;

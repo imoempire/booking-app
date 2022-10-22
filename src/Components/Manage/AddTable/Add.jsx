@@ -1,55 +1,70 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
+import { useStore } from "../../../Context/store";
 
 export const defaultItem = {
-   table: "",
-   chairsPer: "",
- };
+  table: "",
+  chairsPer: "",
+};
 
-const Add = ({onSubmit, initialItems}) => {
+const Add = ({ onSubmit, initialItems }) => {
+  const { totalTable, TotalChair, setTotalTable, setTotalChair } = useStore();
+  const [Tables, setTable] = useState(defaultItem);
+  const [TotalTables, setTotalTables] = useState("");
 
-   const [tables, setTable] = useState(defaultItem);
+  const { tables, chairs } = totalTable;
+  //  console.log(tables.length);
 
-   useEffect(() => {
-      if(initialItems){
-         setTable({...initialItems});
-      }
-   }, [initialItems])
+  useEffect(() => {
+    if (initialItems) {
+      const { tables, chairs } = initialItems;
+      setTable({ ...initialItems });
+      setTotalTables(tables);
+    }
+  }, [initialItems]);
 
-   const handleChange = ({target}) => {
-      const {name, value} = target;
+  const handleChange = ({ target }) => {
+    const { name, value } = target;
 
-      const newTable = {...tables, [name]: value};
-      setTable(newTable);
-   
-   }
+    const newTable = { ...Tables, [name]: value };
+    setTable(newTable);
+  };
 
-   const handleSubmit = (e) => {
-      e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-      const {table, chairsPer} = tables;
-      if (!table.trim()){
-         return alert('Please number of table is required');
-      }
+    const { table, chairsPer } = Tables;
+    if (!table.trim()) {
+      return alert("Please number of table is required");
+    }
 
-      if (!chairsPer.trim()){
-         return alert('Please number of chairs per table is required');
-      }
+    if (!chairsPer.trim()) {
+      return alert("Please number of chairs per table is required");
+    }
 
-      const formData = new FormData();
-      const finalData = {...tables}
+    const formData = new FormData();
+    const finalData = { ...Tables };
 
-      for(let key in finalData){
-         formData.append(key, finalData[key])
-      }
-      onSubmit(finalData)
+    for (let key in finalData) {
+      formData.append(key, finalData[key]);
+    }
+    onSubmit(finalData);
+  };
 
-   }
+  const { table, chairsPer } = Tables;
 
-   const {table, chairsPer} = tables
   return (
     <div>
+      <div className="Total">
+        <span>Available Tables: {Tables?.table}</span>
+        <span>Available Chairs: {Tables?.chairs.length}</span>
+        <span>Chairs Per Table: {Tables?.chairsPer}</span>
+      </div>
       <form onSubmit={handleSubmit}>
-         <span>Manage Total Tables and Chairs</span>
+        <div className="Table_chairs">
+          <div className="Bar">
+            <span>Manage Total Tables and Chairs</span>
+          </div>
+        </div>
         <div className="form_group">
           <div className="form_group_inputs">
             <input
@@ -58,7 +73,7 @@ const Add = ({onSubmit, initialItems}) => {
               value={table}
               name="table"
               type="number"
-              placeholder="Table"
+              placeholder={"tables.length"}
             />
           </div>
           <div className="form_group_inputs">
@@ -68,16 +83,16 @@ const Add = ({onSubmit, initialItems}) => {
               value={chairsPer}
               name="chairsPer"
               type="number"
-              placeholder="Chair per table"
+              placeholder={"chairs.length"}
             />
           </div>
         </div>
         <button className="btn">
-         <span>Add</span>
+          <span>Add</span>
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Add
+export default Add;
