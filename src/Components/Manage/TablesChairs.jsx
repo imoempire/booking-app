@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { addSeats, bookTable, getItem, updatePost } from "../../Api/methods";
-import { useStore } from "../../Context/store";
-import { bookings } from "../../Utils/Data";
+import { addSeats, getItem, updatePost } from "../../Api/methods";
 import Add from "./AddTable/Add";
-import List from "./List/List";
 import "./manage.css";
 
 const TablesChairs = () => {
-  const [Tables, setTables] = useState(bookings);
   const [ItemInfo, setItemInfo] = useState("");
-  const { totalTable, TotalChair, setTotalTable, setTotalChair } = useStore();
 
   const itemId = process.env.Id;
 

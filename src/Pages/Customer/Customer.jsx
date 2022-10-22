@@ -13,12 +13,6 @@ const Customer = () => {
   const [showError, setShowError] = useState(false);
 
   const handleSubmit = async (data) => {
-    const booked = localStorage.getItem("bookings");
-    if (booked) {
-      alert("You have already added a booking")
-      return
-    } 
-
     const { error, item, success, message } = await bookTable(data);
     if (error) {
       alert(error);
