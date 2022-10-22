@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import { addSeats, getItem, updatePost } from "../../Api/methods";
 import Add from "./AddTable/Add";
 import "./manage.css";
@@ -7,6 +8,7 @@ const TablesChairs = () => {
   const [ItemInfo, setItemInfo] = useState("");
 
   const itemId = process.env.Id;
+  const navigate = useNavigate()
 
   const fetchSeats = async () => {
     const { error, seats } = await getItem(itemId);
@@ -35,6 +37,7 @@ const TablesChairs = () => {
     }
 
     setItemInfo({ ...seats });
+    Navigate(-1)
   };
 
   const handleSubmit = async (data) => {
