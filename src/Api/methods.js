@@ -7,7 +7,7 @@ const client = axios.create({
 
 export const bookTable = async (formData) => {
    try {
-      const {data} = await axios.post(`https://mybookingapps.herokuapp.com`, formData);
+      const {data} = await axios.post(`https://mybookingapps.herokuapp.com/book`, formData);
       return data;
    } catch (error) {
       const {response} = error;
