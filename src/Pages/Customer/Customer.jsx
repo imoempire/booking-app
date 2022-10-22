@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { bookTable } from "../../Api/methods";
+import { defaultItem } from "../../Components/Manage/AddTable/Add";
 import Book from "../Book";
 import "./book.css";
 
@@ -8,8 +9,13 @@ const Customer = () => {
   const [busy, setBusy] = useState(false);
   const [resetAfterSubmit, setResetAfterSubmit] = useState(false);
 
+  const booked = localStorage.getItem('bookings')
+
   const handleSubmit = async (data) => {
     setBusy(true);
+    if(booked){
+      alert('Booked already')
+    }
     const { error, item, success, message } = await bookTable(data);
     setBusy(false);
     if (error) {
@@ -21,6 +27,13 @@ const Customer = () => {
     }
     setResetAfterSubmit(true);
   };
+
+  useEffect(() => {
+   const result = localStorage.getItem("bookings");
+   if (!result) return;
+   const booking = JSON.parse(result);
+   setItemInfo({ ...defaultItem, ...booking });
+ }, []);
 
   return (
     <div>

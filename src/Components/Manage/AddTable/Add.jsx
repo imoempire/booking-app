@@ -56,7 +56,7 @@ const Add = ({ onSubmit, initialItems }) => {
     <div>
       <div className="Total">
         <span>Available Tables: {Tables?.table}</span>
-        <span>Available Chairs: {Tables?.chairs.length}</span>
+        <span>Available Chairs: {Tables?.totalchairs}</span>
         <span>Chairs Per Table: {Tables?.chairsPer}</span>
       </div>
       <form onSubmit={handleSubmit}>
