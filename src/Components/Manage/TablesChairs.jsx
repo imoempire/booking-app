@@ -24,9 +24,9 @@ const TablesChairs = () => {
     setTotalTable(seats);
   };
 
-  // useEffect(() => {
-  //   fetchSeats();
-  // }, []);
+  useEffect(() => {
+    fetchSeats();
+  }, []);
 
   const upDate = async (data) => {
     const { error, seats, success } = await updatePost(ItemInfo.id, data);
