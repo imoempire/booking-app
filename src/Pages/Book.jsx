@@ -71,7 +71,6 @@ const Book = ({ onSubmit, initialItems, resetAfterSubmit }) => {
       const toRef = setTimeout(() => {
         setShowError(true);
         clearTimeout(toRef);
-        // it is good practice to clear the timeout (but I am not sure why)
       }, 1000);
     }
   }, [errors]);
