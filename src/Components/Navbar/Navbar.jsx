@@ -25,7 +25,7 @@ const Navbar = () => {
               <img src={logo} alt="" />
             </div>
             {currentPage === "/" ? (
-              <span onClick={managerHandle} className="avatar">Management</span>
+              <div onClick={managerHandle} className="manager">Management</div>
             ) : (
               <div className="nav__user">
                 <span className="notification">

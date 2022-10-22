@@ -10,15 +10,15 @@
    display: flex;
    align-items: center;
    justify-content: center;
-   height: 15rem
+   height: 10rem
 }
 
 .customer_messages span {
-   font-size: 3rem;
+   font-size: 2rem;
 }
 
 .customerPage {
-   margin-top: 2rem;
+   margin-top: 1rem;
 }
 
 .customerPage_header {
@@ -28,13 +28,13 @@
    justify-content: center;
    padding: 2rem 0 0 0;
    gap: 2rem;
-   margin-bottom: 2rem;
+   margin-bottom: 1rem;
 }
 .customerPage__greet {
    font-family: 'Roboto';
    font-style: normal;
    font-weight: 700;
-   font-size: 74px;
+   font-size: 54px;
    line-height: 32px;
    color: #0A0A0A;
 }
@@ -62,13 +62,13 @@
    border-radius: 8px;
    align-items: center;
    justify-content: center;
-   padding: 2rem 0 2rem 0;
-   gap: 2rem;
-   width: 40rem;
-   height: 700px;
+   padding: .5rem 0 .5rem 0;
+   gap: 1.5rem;
+   width: 35rem;
+   height: 500px;
    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
    border-radius: 8px;
-   margin-top: 2rem;
+   margin-top: 1rem;
 }
 
 
@@ -82,7 +82,7 @@
    width: 100%;
    flex-direction: column;
    align-items: center;
-   gap: 3rem;
+   gap: 1.5rem;
    margin-top: 1rem;
 }
 
@@ -90,20 +90,20 @@
    display: flex;
    flex-direction: column;
    width: 20rem;
-   height: 100%;
+   height: 2.5rem;
    color: black;
    border: 1px solid rgb(177, 177, 177);
    outline: none;
-   border-radius: 1rem;
+   border-radius: .5rem;
    padding: 0.625rem 1.875rem;
    z-index: 1;
 }
 
 .bookBtn {
-   margin-top: 1rem;
+   margin-top: .6rem;
    padding: 0.5rem;
    width: 20rem;
-   height: 3rem;
+   height: 2rem;
    line-height: 1;
    border-radius: .5rem;
    color: #fff;

@@ -27,6 +27,15 @@ nav {
    height: 2rem;
 }
 
+.manager{
+   color: #fff;
+   font-size: 15px;
+   padding: 10px;
+   border-radius: 8px;
+   background-color: #0055d6;
+   cursor: pointer;
+}
+
 @media screen and (max-width: 1024px) {
    .nav__list {
       width: 100%;

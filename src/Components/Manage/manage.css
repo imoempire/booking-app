@@ -7,11 +7,24 @@
 }
 
 .Total span {
-   font-size: 2rem;
+   font-size: .8rem;
+}
+
+.Bar {
+   background-color: #fff;
+   width: 100%;
+   height: 2rem;
+   border-radius: 8px;
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+   padding: 1rem;
+   box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+   border-radius: 8px;
 }
 
 form span {
-   font-size: 1.5rem;
+   font-size: .8rem;
    color: #333
 }
 
@@ -26,14 +39,14 @@ form span {
 }
 
 .form_input {
-   width: 100%;
-   height: 100%;
+   width: 12rem;
+      height: 2rem;
    box-shadow: var(--shadow);
    background-color: var(--content-color);
    color: black;
    border: 1px solid rgb(177, 177, 177);
    outline: none;
-   border-radius: 1rem;
+   border-radius: .5rem;
    padding: 0.625rem 1.875rem;
    z-index: 1;
 }
@@ -58,49 +71,6 @@ button {
    cursor: pointer;
    border: none;
    outline: none;
-}
-
-.Table_chairs {
-   margin-top: 2rem;
-}
-
-.Bar {
-   background-color: #fff;
-   width: 100%;
-   border-radius: 8px;
-   display: flex;
-   gap: 1rem;
-   padding: 1rem;
-   box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
-   border-radius: 8px;
-
-}
-
-.Availablity {
-   display: flex;
-   align-items: center;
-   gap: 0.5rem;
-}
-
-.Availablity .green {
-   background-color: green;
-   width: 1rem;
-   border-radius: 10px;
-   height: 1rem;
-}
-
-.Availablity .red {
-   background-color: red;
-   width: 1rem;
-   border-radius: 10px;
-   height: 1rem;
-}
-
-.tableList {
-   display: grid;
-   grid-template-columns: repeat(3, 1fr);
-   gap: 1rem;
-   margin-top: 2rem;
 }
 
 /* Media Query */
@@ -152,7 +122,7 @@ button {
 
 @media screen and (max-width: 450px) {
    .Total span {
-      font-size: 1rem;
+      font-size: .7rem;
    }
    .form_group {
       display: flex;
@@ -173,25 +143,5 @@ button {
    .btn {
       padding: 0.3rem;
       width: 80px;
-   }
-   .tableList {
-      display: grid;
-      align-items: center;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 1rem;
-      margin-top: 2rem;
-   }
-   .Availablity .green {
-      background-color: green;
-      width: .5rem;
-      border-radius: 10px;
-      height: .5rem;
-   }
-   
-   .Availablity .red {
-      background-color: red;
-      width: .5rem;
-      border-radius: 10px;
-      height: .5rem;
    }
 }

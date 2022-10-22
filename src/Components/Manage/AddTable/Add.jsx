@@ -66,7 +66,7 @@ const Add = ({ onSubmit, initialItems }) => {
       <form onSubmit={handleSubmit}>
         <div className="Table_chairs">
           <div className="Bar">
-            <span>Manage Total Tables and Chairs</span>
+            <span>Update Total Available Tables and Chairs</span>
           </div>
         </div>
         <div className="form_group">

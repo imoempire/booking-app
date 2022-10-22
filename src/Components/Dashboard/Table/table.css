@@ -1,12 +1,13 @@
 table {
-   width: 69rem;
-   height: 500px;
+   width: 45rem;
+   height: 400px;
 }
 
 table th,
 table td {
    text-align: left;
    padding: 8px;
+   font-size: 15px;
 }
 
 table td {
@@ -42,6 +43,7 @@ table td:nth-child(5){
    border-top: 1px solid #ddd;
    background-color: #ffff;
    padding-top: 20px;
+   padding-right: 10px;
    color: #B42318;;
 }
 

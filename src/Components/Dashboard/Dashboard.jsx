@@ -4,9 +4,15 @@ import Card from "./DashboardCard/Card";
 import "./dashboard.css";
 import Table from "./Table/Table";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [dataTable, setDataTable] = useState([]);
+  const navigate = useNavigate()
+
+  const toManage = () => {
+    navigate('/dashboard/manage')
+  }
 
   useEffect(() => {
     axios("https://jsonplaceholder.typicode.com/users")
@@ -30,6 +36,7 @@ const Dashboard = () => {
       {/* Title */}
       <div className="header">
       <span className="dashboard__title">Table Booking</span>
+      <span onClick={toManage} className="dashboard__title">Manage Tables & Chairs</span>
       </div>
       {/* Tabs */}
       <div className="dashboard__Tabs">
