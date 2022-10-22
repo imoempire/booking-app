@@ -18,7 +18,6 @@ const TablesChairs = () => {
     }
 
     setItemInfo({ ...seats });
-    setTotalTable(seats);
   };
 
   useEffect(() => {
