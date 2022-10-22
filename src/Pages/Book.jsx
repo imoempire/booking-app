@@ -29,7 +29,7 @@ const Book = ({ onSubmit, initialItems, resetAfterSubmit }) => {
     
     const item = {
       value: newTable,
-      expiry: 3600,
+      expiry: 900,
     }
 
     localStorage.setItem('bookings', JSON.stringify(item));

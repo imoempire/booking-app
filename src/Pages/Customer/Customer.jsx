@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { bookTable } from "../../Api/methods";
 import { defaultItem } from "../../Components/Manage/AddTable/Add";
 import Book from "../Book";
-import "./book.css";
+import "../book.css";
 
 const Customer = () => {
   const [ItemInfo, setItemInfo] = useState(null);
@@ -15,12 +15,11 @@ const Customer = () => {
   const handleSubmit = async (data) => {
     const booked = localStorage.getItem("bookings");
     if (booked) {
-      setMessages("You have already Booked a Table");
-      return;
-    }
+      alert("You have already added a booking")
+      return
+    } 
 
     const { error, item, success, message } = await bookTable(data);
-    setBusy(false);
     if (error) {
       alert(error);
     }
@@ -57,7 +56,7 @@ const Customer = () => {
  }, [showError]);
 
   return (
-    <div>
+    <div className="container">
       <div>
         {showError ? <div  className="errors">{errors}</div> : null}
       </div>
