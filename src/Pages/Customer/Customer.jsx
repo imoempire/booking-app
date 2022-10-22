@@ -8,14 +8,17 @@ const Customer = () => {
   const [ItemInfo, setItemInfo] = useState(null);
   const [busy, setBusy] = useState(false);
   const [resetAfterSubmit, setResetAfterSubmit] = useState(false);
-
-  const booked = localStorage.getItem('bookings')
+  const [messages, setMessages] = useState();
+  const [errors, setErrors] = useState('');
+  const [showError, setShowError] = useState(false);
 
   const handleSubmit = async (data) => {
-    setBusy(true);
-    if(booked){
-      alert('Booked already')
+    const booked = localStorage.getItem("bookings");
+    if (booked) {
+      setMessages("You have already Booked a Table");
+      return;
     }
+
     const { error, item, success, message } = await bookTable(data);
     setBusy(false);
     if (error) {
@@ -23,20 +26,41 @@ const Customer = () => {
     }
 
     if (success) {
-      alert(message);
+      setMessages(message);
     }
     setResetAfterSubmit(true);
   };
 
   useEffect(() => {
-   const result = localStorage.getItem("bookings");
-   if (!result) return;
-   const booking = JSON.parse(result);
-   setItemInfo({ ...defaultItem, ...booking });
- }, []);
+    const result = localStorage.getItem("bookings");
+    if (!result) return;
+    const booking = JSON.parse(result);
+    setItemInfo({ ...defaultItem, ...booking });
+  }, []);
+
+  useEffect(() => {
+   if (errors) {
+     const toRef = setTimeout(() => {
+       setShowError(true);
+       clearTimeout(toRef);
+     }, 1000);
+   }
+ }, [errors]);
+
+ useEffect(() => {
+   if (showError) {
+     const toRef = setTimeout(() => {
+       setShowError(false);
+       clearTimeout(toRef);
+     }, 4000);
+   }
+ }, [showError]);
 
   return (
     <div>
+      <div>
+        {showError ? <div  className="errors">{errors}</div> : null}
+      </div>
       <div className="customerPage">
         <div className="customerPage_header">
           <span className="customerPage__greet">Welcome!</span>
@@ -45,11 +69,17 @@ const Customer = () => {
           </span>
         </div>
       </div>
-      <Book
-        onSubmit={handleSubmit}
-        resetAfterSubmit={resetAfterSubmit}
-        initialItems={ItemInfo}
-      />
+      {messages ? (
+        <div className="customer_messages">
+          <span>{messages}</span>
+        </div>
+      ) : (
+        <Book
+          onSubmit={handleSubmit}
+          resetAfterSubmit={resetAfterSubmit}
+          initialItems={ItemInfo}
+        />
+      )}
     </div>
   );
 };

@@ -10,6 +10,7 @@ const Add = ({ onSubmit, initialItems }) => {
   const { totalTable, TotalChair, setTotalTable, setTotalChair } = useStore();
   const [Tables, setTable] = useState(defaultItem);
   const [TotalTables, setTotalTables] = useState("");
+  const [errors, setErrors] = useState("");
 
   const { tables, chairs } = totalTable;
   //  console.log(tables.length);
@@ -34,11 +35,11 @@ const Add = ({ onSubmit, initialItems }) => {
 
     const { table, chairsPer } = Tables;
     if (!table.trim()) {
-      return alert("Please number of table is required");
+      return setErrors("Please number of table is required");
     }
 
     if (!chairsPer.trim()) {
-      return alert("Please number of chairs per table is required");
+      return setErrors("Please number of chairs per table is required");
     }
 
     const formData = new FormData();
@@ -54,6 +55,9 @@ const Add = ({ onSubmit, initialItems }) => {
 
   return (
     <div>
+      <div style={{background: 'red'}}>
+      {errors ? errors : ""}
+      </div>
       <div className="Total">
         <span>Available Tables: {Tables?.table}</span>
         <span>Available Chairs: {Tables?.totalchairs}</span>

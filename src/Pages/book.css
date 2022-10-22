@@ -1,14 +1,33 @@
-.customerPage{
+.errors {
+   background-color: red;
+   padding: .6rem;
+   color: #fff;
+   border-radius: 10px;
+   width: 25rem;
+}
+
+.customer_messages {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 15rem
+}
+
+.customer_messages span {
+   font-size: 3rem;
+}
+
+.customerPage {
    margin-top: 2rem;
 }
 
-.customerPage_header{
+.customerPage_header {
    display: flex;
    flex-direction: column;
    gap: 1rem;
 }
 
-.customerPage__greet{
+.customerPage__greet {
    font-family: 'Roboto';
    font-style: normal;
    font-weight: 700;
@@ -36,13 +55,13 @@
    margin-bottom: 2rem;
 }
 
-.customerPage_Form{
+.customerPage_Form {
    display: flex;
    align-items: center;
    justify-content: center;
 }
 
-.customerPage_Form .forms{
+.customerPage_Form .forms {
    display: flex;
    flex-direction: column;
    align-items: center;

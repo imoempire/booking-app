@@ -9,6 +9,8 @@ export const defaultItem = {
 
 const Book = ({ onSubmit, initialItems, resetAfterSubmit }) => {
   const [tables, setTable] = useState(defaultItem);
+  const [errors, setErrors] = useState('');
+  const [showError, setShowError] = useState(false);
 
   useEffect(() => {
     if (initialItems) {
@@ -24,6 +26,14 @@ const Book = ({ onSubmit, initialItems, resetAfterSubmit }) => {
 
     const newTable = { ...tables, [name]: value };
     setTable(newTable);
+    
+    const item = {
+      value: newTable,
+      expiry: 3600,
+    }
+
+    localStorage.setItem('bookings', JSON.stringify(item));
+
   };
 
   const handleSubmit = (e) => {
@@ -31,15 +41,15 @@ const Book = ({ onSubmit, initialItems, resetAfterSubmit }) => {
 
     const { name, contact, customers } = tables;
     if (!name.trim()) {
-      return alert("Please number of table is required");
+      return setErrors("Please number of table is required");
     }
 
     if (!contact.trim()) {
-      return alert("Please number of chairs per table is required");
+      return setErrors("Please number of chairs per table is required");
     }
 
     if (!customers.trim()) {
-      return alert("Please number of chairs per table is required");
+      return setErrors("Please number of chairs per table is required");
     }
 
     const formData = new FormData();
@@ -56,9 +66,31 @@ const Book = ({ onSubmit, initialItems, resetAfterSubmit }) => {
     setTable({ ...defaultItem });
   };
 
+  useEffect(() => {
+    if (errors) {
+      const toRef = setTimeout(() => {
+        setShowError(true);
+        clearTimeout(toRef);
+        // it is good practice to clear the timeout (but I am not sure why)
+      }, 1000);
+    }
+  }, [errors]);
+
+  useEffect(() => {
+    if (showError) {
+      const toRef = setTimeout(() => {
+        setShowError(false);
+        clearTimeout(toRef);
+      }, 4000);
+    }
+  }, [showError]);
+
   const { name, contact, customers } = tables;
   return (
     <div>
+      <div>
+        {showError ? <div  className="errors">{errors}</div> : null}
+      </div>
       <div className="customerPage_Form">
         <form className="forms" onSubmit={handleSubmit}>
           <span>Complete this form to book a Table</span>
