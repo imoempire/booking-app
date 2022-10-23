@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { bookings, cardInfo } from "../../Utils/Data";
+import { cardInfo } from "../../Utils/Data";
 import Card from "./DashboardCard/Card";
 import "./dashboard.css";
 import Table from "./Table/Table";

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getItem, updateItem } from "../../Api/methods";
 import Add from "./AddTable/Add";
 import "./manage.css";
@@ -61,7 +61,7 @@ const TablesChairs = () => {
     }
 
     setItemInfo({ ...seats });
-    Navigate(-1)
+    navigate(-1)
   };
 
   return (

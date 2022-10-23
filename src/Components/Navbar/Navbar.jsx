@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import logo from "../../Assets/Logo.png";
 import avatar from "../../Assets/Avatar.png";
 import { IoIosNotificationsOutline } from "react-icons/io";
@@ -6,7 +6,6 @@ import "./navbar.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  // const [currentPage, setcurrentPage] = useState('');
   const location = useLocation();
   const currentPage = location.pathname;
 
