@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { bookings } from "../../../Utils/Data";
 import "./table.css";
 
 const Table = ({ data, column }) => {
+  const [customers, setcustomers] = useState(bookings);
+
+  console.log(data);
+
+  useEffect(() =>{
+    if(data){
+      setcustomers(data)
+    }
+  }, [data])
+
   return (
     <table>
       <thead>
@@ -12,7 +23,7 @@ const Table = ({ data, column }) => {
         </tr>
       </thead>
       <tbody>
-        {data.map((item) => (
+        {customers.map((item) => (
           <TableRow item={item} column={column} />
         ))}
       </tbody>
@@ -20,22 +31,22 @@ const Table = ({ data, column }) => {
   );
 };
 
-const TableHeadItem = ({ item }) => <th>{item.heading}</th>;
+const TableHeadItem = ({ item }) => <th className="head">{item.heading}</th>;
 
 const TableRow = ({ item, column }) => (
-  <tr className="table_row">
+  <tr className="table_row" key={item.id}>
     {column.map((columnItem) => {
       return (
         <>
-          <td key={item.id}>
+          <td className="row" key={item.id}>
             {item[`${columnItem.value}`]} 
           </td>
         </>
       );
     })}
-    <div className="delete_btn">
+    <span className="delete_btn">
       <span>Delete</span>
-    </div>
+    </span>
   </tr>
 );
 

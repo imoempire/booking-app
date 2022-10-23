@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./book.css";
+import { NotificationManager } from "react-notifications";
 
 export const defaultItem = {
   name: "",
@@ -9,8 +10,6 @@ export const defaultItem = {
 
 const Book = ({ onSubmit, initialItems, resetAfterSubmit }) => {
   const [tables, setTable] = useState(defaultItem);
-  const [errors, setErrors] = useState("");
-  const [showError, setShowError] = useState(false);
 
   useEffect(() => {
     if (initialItems) {
@@ -25,8 +24,7 @@ const Book = ({ onSubmit, initialItems, resetAfterSubmit }) => {
     const { name, value } = target;
 
     const newTable = { ...tables, [name]: value };
-    setTable({...newTable});
-
+    setTable({ ...newTable });
   };
 
   const handleSubmit = (e) => {
@@ -34,13 +32,28 @@ const Book = ({ onSubmit, initialItems, resetAfterSubmit }) => {
 
     const { name, contact, customers } = tables;
     console.log(tables);
-    if (!name.trim()) return setErrors("Please number of table is required");
+    if (!name.trim()) return;
+    // setErrors("Please number of table is required");
 
     if (!contact.trim())
-      return setErrors("Please number of chairs per table is required");
+      return NotificationManager.error(
+        "Please number of chairs per table is required",
+        "success",
+        5000,
+        () => {
+          alert("callback");
+        }
+      );
 
     if (!customers)
-      return setErrors("Please number of chairs per table is required");
+      return NotificationManager.error(
+        "number of chairs per table is required",
+        "success",
+        5000,
+        () => {
+          alert("callback");
+        }
+      );
 
     const formData = new FormData();
     const finalData = { ...tables };
@@ -56,28 +69,9 @@ const Book = ({ onSubmit, initialItems, resetAfterSubmit }) => {
     setTable({ ...defaultItem });
   };
 
-  useEffect(() => {
-    if (errors) {
-      const toRef = setTimeout(() => {
-        setShowError(true);
-        clearTimeout(toRef);
-      }, 1000);
-    }
-  }, [errors]);
-
-  useEffect(() => {
-    if (showError) {
-      const toRef = setTimeout(() => {
-        setShowError(false);
-        clearTimeout(toRef);
-      }, 4000);
-    }
-  }, [showError]);
-
   const { name, contact, customers } = tables;
   return (
     <div>
-      <div>{showError ? <div className="errors">{errors}</div> : null}</div>
       <div className="customerPage_Form">
         <form className="forms" onSubmit={handleSubmit}>
           <span>Complete this form to book a Table</span>

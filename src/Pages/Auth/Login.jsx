@@ -2,24 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/useAuth";
 import './login.css'
+import {
+  NotificationManager, NotificationContainer
+} from "react-notifications";
+import "react-notifications/lib/notifications.css";
+
 
 const Login = () => {
   const { user } = useAuth();
   const [username, setUsername] = useState("managerIsaac");
   const [password, setPassword] = useState("manager8560");
-  const [Errors, setErrors] = useState('');
-  const [showError, setShowError] = useState(false);
 
   const navigate = useNavigate();
-
-  const handleSubmit = () => {
-   if (username === user?.username && password === user?.password) {
-      setErrors("This Route is for Staff Only")
-   }
-    if (username === user?.username && password === user?.password) {
-      navigate("/dashboard", { replace: true });
-    }
-  };
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -38,30 +32,26 @@ const Login = () => {
 
     localStorage.setItem("manager", JSON.stringify(item));
   };
-
-  useEffect(() => {
-   if (Errors) {
-     const toRef = setTimeout(() => {
-       setShowError(true);
-       clearTimeout(toRef);
-     }, 1000);
+  const handleSubmit = () => {
+   if (username !== user?.username && password !== user?.password) {
+    return NotificationManager.error(
+      "Logging in successfully",
+      "Error",
+      5000,
+      () => {
+        alert("callback");
+      }
+    );
    }
- }, [Errors]);
+    if (username === user?.username && password === user?.password) {
+      navigate("/dashboard", { replace: true });
+    }
+  };
 
- useEffect(() => {
-   if (showError) {
-     const toRef = setTimeout(() => {
-       setShowError(false);
-       clearTimeout(toRef);
-     }, 4000);
-   }
- }, [showError]);
 
   return (
     <div>
-      <div>
-        {showError ? <div  className="errors">{Errors}</div> : null}
-      </div>
+      <NotificationContainer/>
       <div className="Login">
         <form className="Login_form" onSubmit={handleSubmit}>
           <span>For Managers Only</span>

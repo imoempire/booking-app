@@ -1,6 +1,10 @@
 table {
-   width: 45rem;
-   height: 400px;
+   width: 46rem;
+   height: 100%;
+}
+
+.head{
+   width: 47rem;
 }
 
 table th,
@@ -36,15 +40,20 @@ table td:nth-child(5){
    background-color: #ffff;
 }
 
+.row{
+   width: 45rem;
+   height: 2rem;
+}
+
 .delete_btn{
    display: flex;
    align-items: center;
    justify-content: center;
    border-top: 1px solid #ddd;
    background-color: #ffff;
-   padding-top: 20px;
+   padding-top: 10px;
    padding-right: 10px;
-   color: #B42318;;
+   color: #B42318;
 }
 
 @media screen and (max-width: 1024px) {

@@ -1,12 +1,12 @@
 import axios from "axios";
 
 const client = axios.create({
-   baseUrl: 'https://mybookingapps.netlify.app'
+   baseUrl: 'http://localhost:8560'
 });
 
 export const bookTable = async (formData) => {
    try {
-      const {data} = await axios.post(`https://mybookingapps.netlify.app/book`, formData);
+      const {data} = await axios.post(`http://localhost:8560/book`, formData);
       return data;
    } catch (error) {
       const {response} = error;
@@ -18,9 +18,9 @@ export const bookTable = async (formData) => {
    
 }
 
-export const getItem = async (itemId) => {
+export const getCustomers = async () => {
    try {
-   const {data} = await client(`https://mybookingapps.netlify.app/${itemId}`);
+   const {data} = await client(`http://localhost:8560/all`);
    return data;
    } catch (error) {
       const {response} = error;
@@ -31,9 +31,22 @@ export const getItem = async (itemId) => {
    }
 }
 
-export const updatePost = async (ItemId, formData) => {
+export const getItem = async (itemId) => {
    try {
-   const {data} = await client.put(`https://mybookingapps.netlify.app/${ItemId}`, formData);
+   const {data} = await client(`http://localhost:8560/${itemId}`);
+   return data;
+   } catch (error) {
+      const {response} = error;
+      if(response?.data){
+         return response.data;
+      }
+      return {error: error.message || error }; 
+   }
+}
+
+export const updateItem = async (ItemId, formData) => {
+   try {
+   const {data} = await client.put(`http://localhost:8560/${ItemId}`, formData);
    return data;
    } catch (error) {
       const {response} = error;
@@ -46,7 +59,7 @@ export const updatePost = async (ItemId, formData) => {
 
 export const addSeats = async (formData) => {
    try {
-      const {data} = await axios.post(`https://mybookingapps.netlify.app/seats`, formData);
+      const {data} = await axios.post(`http://localhost:8560/seats`, formData);
       return data;
    } catch (error) {
       const {response} = error;

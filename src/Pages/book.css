@@ -1,10 +1,4 @@
-.errors {
-   background-color: red;
-   padding: .6rem;
-   color: #fff;
-   border-radius: 10px;
-   width: 25rem;
-}
+
 
 .customer_messages {
    display: flex;

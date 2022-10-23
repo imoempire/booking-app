@@ -1,52 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { bookTable } from "../../Api/methods";
-import { defaultItem } from "../../Components/Manage/AddTable/Add";
 import Book from "../Book";
 import "../book.css";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
+
 
 const Customer = () => {
   const [ItemInfo, setItemInfo] = useState(null);
-  const [busy, setBusy] = useState(false);
   const [resetAfterSubmit, setResetAfterSubmit] = useState(false);
   const [messages, setMessages] = useState();
-  const [errors, setErrors] = useState('');
-  const [showError, setShowError] = useState(false);
 
   const handleSubmit = async (data) => {
-    const { error, item, success, message } = await bookTable(data);
+    const { error, success, message } = await bookTable(data);
     if (error) {
-      alert(error);
+      NotificationManager.error(error, "Error", 5000, () => {
+        alert("callback");
+      });
     }
 
     if (success) {
-      setMessages(message);
+      NotificationManager.success(
+        {message},
+        "success",
+        5000,
+        () => {
+          alert("callback");
+        }
+      );;
     }
     setResetAfterSubmit(true);
+    setMessages(message)
   };
-
-  useEffect(() => {
-   if (errors) {
-     const toRef = setTimeout(() => {
-       setShowError(true);
-       clearTimeout(toRef);
-     }, 1000);
-   }
- }, [errors]);
-
- useEffect(() => {
-   if (showError) {
-     const toRef = setTimeout(() => {
-       setShowError(false);
-       clearTimeout(toRef);
-     }, 4000);
-   }
- }, [showError]);
 
   return (
     <div className="container">
-      <div>
-        {showError ? <div  className="errors">{errors}</div> : null}
-      </div>
+      <NotificationContainer/>
       <div className="customerPage">
         <div className="customerPage_header">
           <span className="customerPage__greet">Welcome!</span>

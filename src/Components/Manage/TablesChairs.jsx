@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import { addSeats, getItem, updatePost } from "../../Api/methods";
+import { getItem, updateItem } from "../../Api/methods";
 import Add from "./AddTable/Add";
 import "./manage.css";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
 
 const TablesChairs = () => {
   const [ItemInfo, setItemInfo] = useState("");
+
 
   const itemId = process.env.Id;
   const navigate = useNavigate()
@@ -13,8 +18,14 @@ const TablesChairs = () => {
   const fetchSeats = async () => {
     const { error, seats } = await getItem(itemId);
 
-    if (error) {
-      alert(error);
+    if (error) {NotificationManager.error(
+      {error},
+      "success",
+      5000,
+      () => {
+        alert("callback");
+      }
+    );
     }
 
     setItemInfo({ ...seats });
@@ -25,32 +36,37 @@ const TablesChairs = () => {
   }, []);
 
   const upDate = async (data) => {
-    const { error, seats, success } = await updatePost(ItemInfo.id, data);
+    const { error, seats, success } = await updateItem(ItemInfo.id, data);
 
     if (error) {
-      alert(error);
+      NotificationManager.error(
+        {error},
+        "success",
+        5000,
+        () => {
+          alert("callback");
+        }
+      );;
     }
 
     if (success) {
-      alert("Tables updated");
+      NotificationManager.success(
+        "Updated Successfully",
+        "success",
+        5000,
+        () => {
+          alert("callback");
+        }
+      );;
     }
 
     setItemInfo({ ...seats });
     Navigate(-1)
   };
 
-  const handleSubmit = async (data) => {
-    const { error, success } = await addSeats(data);
-
-    if (error) return alert(error);
-
-    if (success) {
-      alert("Booking successfully");
-    }
-  };
-
   return (
     <div className="Form">
+      <NotificationContainer/>
       <Add initialItems={ItemInfo} onSubmit={upDate} />
     </div>
   );

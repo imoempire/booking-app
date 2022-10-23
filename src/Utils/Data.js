@@ -5,12 +5,12 @@ export const cardInfo = [
     total: "14",
   },
   {
-    id: 1,
+    id: 3,
     title: "Chairs Booked",
     total: "32",
   },
   {
-    id: 1,
+    id: 4,
     title: "Tables Booked",
     total: "6",
   },

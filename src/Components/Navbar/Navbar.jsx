@@ -28,7 +28,7 @@ const Navbar = () => {
               <div onClick={managerHandle} className="manager">Management</div>
             ) : (
               <div className="nav__user">
-                <span className="notification">
+                <span className="bell">
                   <IoIosNotificationsOutline color="#9CA3AF" size={"1.5rem"} />
                 </span>
                 <span className="avatar">
