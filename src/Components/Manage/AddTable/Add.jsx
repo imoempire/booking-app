@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useStore } from "../../../Context/store";
 
 export const defaultItem = {
   table: "",
@@ -7,19 +6,12 @@ export const defaultItem = {
 };
 
 const Add = ({ onSubmit, initialItems }) => {
-  const { totalTable, TotalChair, setTotalTable, setTotalChair } = useStore();
   const [Tables, setTable] = useState(defaultItem);
-  const [TotalTables, setTotalTables] = useState("");
   const [errors, setErrors] = useState("");
-
-  const { tables, chairs } = totalTable;
-  //  console.log(tables.length);
 
   useEffect(() => {
     if (initialItems) {
-      const { tables, chairs } = initialItems;
       setTable({ ...initialItems });
-      setTotalTables(tables);
     }
   }, [initialItems]);
 
@@ -34,13 +26,9 @@ const Add = ({ onSubmit, initialItems }) => {
     e.preventDefault();
 
     const { table, chairsPer } = Tables;
-    if (!table.trim()) {
-      return setErrors("Please number of table is required");
-    }
+    if (!table) return setErrors("number of table is required");
 
-    if (!chairsPer.trim()) {
-      return setErrors("Please number of chairs per table is required");
-    }
+    if (!chairsPer) return setErrors("chairs per table is required");
 
     const formData = new FormData();
     const finalData = { ...Tables };
@@ -55,12 +43,10 @@ const Add = ({ onSubmit, initialItems }) => {
 
   return (
     <div>
-      <div style={{background: 'red'}}>
-      {errors ? errors : ""}
-      </div>
+      <div style={{ background: "red" }}>{errors ? errors : ""}</div>
       <div className="Total">
         <span>Available Tables: {Tables?.table}</span>
-        <span>Available Chairs: {Tables?.totalchairs}</span>
+        {/* <span>Available Chairs: {Tables?.totalchairs}</span> */}
         <span>Chairs Per Table: {Tables?.chairsPer}</span>
       </div>
       <form onSubmit={handleSubmit}>

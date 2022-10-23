@@ -25,13 +25,6 @@ const Customer = () => {
   };
 
   useEffect(() => {
-    const result = localStorage.getItem("bookings");
-    if (!result) return;
-    const booking = JSON.parse(result);
-    setItemInfo({ ...defaultItem, ...booking });
-  }, []);
-
-  useEffect(() => {
    if (errors) {
      const toRef = setTimeout(() => {
        setShowError(true);

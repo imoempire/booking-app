@@ -1,13 +1,12 @@
 import axios from "axios";
-// import client from "./clients";
 
 const client = axios.create({
-   baseUrl: 'https://mybookingapps.herokuapp.com'
+   baseUrl: 'http://localhost:8560'
 });
 
 export const bookTable = async (formData) => {
    try {
-      const {data} = await axios.post(`https://mybookingapps.herokuapp.com/book`, formData);
+      const {data} = await axios.post(`http://localhost:8560/book`, formData);
       return data;
    } catch (error) {
       const {response} = error;
@@ -21,7 +20,7 @@ export const bookTable = async (formData) => {
 
 export const getItem = async (itemId) => {
    try {
-   const {data} = await client(`https://mybookingapps.herokuapp.com/${itemId}`);
+   const {data} = await client(`http://localhost:8560/${itemId}`);
    return data;
    } catch (error) {
       const {response} = error;
@@ -34,7 +33,7 @@ export const getItem = async (itemId) => {
 
 export const updatePost = async (ItemId, formData) => {
    try {
-   const {data} = await client.put(`https://mybookingapps.herokuapp.com/${ItemId}`, formData);
+   const {data} = await client.put(`http://localhost:8560/${ItemId}`, formData);
    return data;
    } catch (error) {
       const {response} = error;
@@ -47,7 +46,7 @@ export const updatePost = async (ItemId, formData) => {
 
 export const addSeats = async (formData) => {
    try {
-      const {data} = await axios.post(`https://mybookingapps.herokuapp.com/seats`, formData);
+      const {data} = await axios.post(`http://localhost:8560/seats`, formData);
       return data;
    } catch (error) {
       const {response} = error;
